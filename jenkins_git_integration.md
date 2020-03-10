@@ -10,5 +10,5 @@ GIT Integration
 3. Git test connection
     a. Setup Jenkins freestyle job
     b. Checkout the remote git public repository
-    c. Checkout the remote git private repository by configuring Github credentials in Jenkins
+    c. Checkout the remote git private repository by configuring Github username and password in Jenkins credential manager
  

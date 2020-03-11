@@ -16,5 +16,8 @@ GIT Integration
     c. Checkout the remote git private repository by configuring Github username and password in Jenkins credential manager
     
     
-JDK and Maven Integration  
+JDK and Maven Integration
+
+1. Goto Manage Jenkins  --> Global Tool Configuration --> Choose JDK --> Create Oracle Account
+2. Execute Jenkins job to install JDK
  

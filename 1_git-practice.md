@@ -15,36 +15,49 @@ Perform below operations on private-repo from Git Bash:
             
            git pull origin master                
       
-6. Create a testfile in working directory and add test data using vi editor
-
-           touch testfile
-           vi testfile
-       
-7. Check git status and see if testfile is not indexed / untracked
-
-           git status
-
-8. Add testfile in staging area 
-                        
-           git add testfile
-            
-9. Check git status and see if testfile is indexed / tracked.
-
-           git status
-      
-10. Commit file to store in Local Repository
-            
-           git commit -m "testfile commit"
-      
-11. Create a new feature branch and checkout locally
+6. Create a new feature branch and checkout locally
 
            git branch feature_branch
            git checkout feature_branch
+           
+
+7. Create a testfile in working directory and add test data using vi editor
+
+           touch testfile
+           echo "hello world" >>testfile
+       
+8. Check git status and see if testfile is not indexed / untracked
+
+           git status
+
+9. Add testfile in staging area 
+                        
+           git add testfile
+            
+10. Check git status and see if testfile is indexed / tracked.
+
+           git status
+      
+11. Commit file to store in Local Repository
+            
+           git commit -m "testfile commit"
+      
           
            
 12. Push the changes to feature branch of Remote Repository
 
            git push origin feature_branch
             
+13. Modify existing file
 
+           echo "This is test" >>testfile
+           
+14. Check the difference using below command
 
+           git diff testfile
+           
+                OR
+                
+           git difftool testfile
+           
+           

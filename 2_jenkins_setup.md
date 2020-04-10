@@ -51,7 +51,7 @@ Check your os vendor by using cat /etc/os-release
 
 7. Restart jenkins to reflect the changes.
        
-        sudo service jenkins start
+        service jenkins start
        
 8. Now, you will be able to access jenkins via http or https using the below link
        

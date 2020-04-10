@@ -25,24 +25,29 @@ Check your os vendor by using cat /etc/os-release
          
          apt-get install -y jenkins
     
-5. Optional - Configure https using Jenkins startup script
+5. Optional - Configure https using self signed certicate in Jenkins startup script
  
    a. Jenkins startup script
         
         vi /etc/default/jenkins
         
-   b. Configure https using self signed certificate. Create key and certificate. Provide information wherever asked.
+   b. Generate key and certificate and provide the information accordingly.
         
         openssl req -newkey rsa:2048 -nodes -keyout jenkins.key -x509 -days 700 -out jenkins.crt
-     /* The below command would ask you for password. Remember the same as that will be used during the configuration. */
+        
+   c. Convert key file and certificate file in .p12 encrypted file. The below command would ask you for password. Remember the same as that will be used during the Jenkins Certificate configuration. */
+        
         
         openssl pkcs12 -inkey jenkins.key -in jenkins.crt -export -out keys.pkcs12
+        
+   d. Convert .p12 file into Jenkins key store file     
+        
         keytool -importkeystore -srckeystore keys.pkcs12 -srcstoretype pkcs12 -destkeystore /var/lib/jenkins/jenkins.jks
    
-   c. Once the certificates are generated , configure the same in the /etc/default/jenkins file.
+   e. Once the certificates are generated , configure the same in the /etc/default/jenkins file.Also configure httpPort=-1 to disable http.
         
        JENKINS_ARGS="--webroot=/var/cache/$NAME/war --httpPort=-1 --httpsPort=8443 --httpsKeyStore=/var/lib/jenkins/jenkins.jks --httpsKeyStorePassword=<password>"
-      /* Note: httpPort=-1 would disable http. If you wish to have both http and https , then provide the desired port.  */
+      
       
 6. Set IST Timezone to get appropriate time in Jenkins console 
 
@@ -51,7 +56,7 @@ Check your os vendor by using cat /etc/os-release
 
 7. Restart jenkins to reflect the changes.
        
-        service jenkins start
+        service jenkins restart
        
 8. Now, you will be able to access jenkins via http or https using the below link
        

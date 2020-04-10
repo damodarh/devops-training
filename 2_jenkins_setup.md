@@ -10,8 +10,7 @@ Check your os vendor by using cat /etc/os-release
 
 2. Install Java version
     
-        apt install -y openjdk-8-jdk
-        apt-get update
+        apt install -y openjdk-8-jdk && apt-get update
     
 3. Import the GPG keys of the Jenkins repository using following wget command
     
@@ -19,17 +18,24 @@ Check your os vendor by using cat /etc/os-release
         
 4. Add the Jenkins official repository to debian system
     
-         echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
-         
+         echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list          
          apt-get update
-         
+                           
          apt-get install -y jenkins
     
-5. Route Jenkins HTTP Port 8080 traffic to standard HTTP port 80 and HTTPS Port 8443 to standard HTTPS port 443 using iptables.  
+5. Route Jenkins HTTP Port 8080 traffic to standard HTTP port 80
 
+        iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+         
+         
+6. Optional: Add --httpsPort=8443 in JENKINS_ARGS parameter under below file 
+         
+         vi /etc/default/jenkins
 
-         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
-         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443      
+7. Optional: HTTPS Port 8443 to standard HTTPS port 443 using iptables.           
+         
+       iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+
       
 6. Set IST Timezone to get appropriate time in Jenkins console 
 

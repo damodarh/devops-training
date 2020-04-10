@@ -10,7 +10,7 @@ Check your os vendor by using cat /etc/os-release
 
 2. Install Java version
     
-        apt install openjdk-8-jdk
+        apt install -y openjdk-8-jdk
         apt-get update
     
 3. Import the GPG keys of the Jenkins repository using following wget command

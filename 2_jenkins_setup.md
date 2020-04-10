@@ -25,29 +25,11 @@ Check your os vendor by using cat /etc/os-release
          
          apt-get install -y jenkins
     
-5. Optional - Configure https using self signed certicate in Jenkins startup script
- 
-   a. Jenkins startup script
-        
-        vi /etc/default/jenkins
-        
-   b. Generate key and certificate and provide the information accordingly.
-        
-        openssl req -newkey rsa:2048 -nodes -keyout jenkins.key -x509 -days 700 -out jenkins.crt
-        
-   c. Convert key file and certificate file in .p12 encrypted file. The below command would ask you for password. Remember the same as that will be used during the Jenkins Certificate configuration. */
-        
-        
-        openssl pkcs12 -inkey jenkins.key -in jenkins.crt -export -out keys.pkcs12
-        
-   d. Convert .p12 file into Jenkins key store file     
-        
-        keytool -importkeystore -srckeystore keys.pkcs12 -srcstoretype pkcs12 -destkeystore /var/lib/jenkins/jenkins.jks
-   
-   e. Once the certificates are generated , configure the same in the /etc/default/jenkins file.Also configure httpPort=-1 to disable http.
-        
-       JENKINS_ARGS="--webroot=/var/cache/$NAME/war --httpPort=-1 --httpsPort=8443 --httpsKeyStore=/var/lib/jenkins/jenkins.jks --httpsKeyStorePassword=<password>"
-      
+5. Route Jenkins HTTP Port 8080 traffic to standard HTTP port 80 and HTTPS Port 8443 to standard HTTPS port 443 using iptables.  
+
+
+         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443      
       
 6. Set IST Timezone to get appropriate time in Jenkins console 
 
@@ -60,7 +42,7 @@ Check your os vendor by using cat /etc/os-release
        
 8. Now, you will be able to access jenkins via http or https using the below link
        
-       http://${jenkins_public_ip}:8080    OR     https://${jenkins_public_ip}:8443
+       http://${jenkins_public_ip}    OR     https://${jenkins_public_ip}
        
        cat /var/lib/jenkins/secrets/initialAdminPassword
        

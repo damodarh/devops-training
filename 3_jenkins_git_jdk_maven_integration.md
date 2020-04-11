@@ -12,10 +12,16 @@ GIT Integration
 
 3. Test git connection
 
-    a. Setup Jenkins freestyle job
+    a. Create new Jenkins freestyle job
     
-    b. Checkout the remote git private repository by configuring Github username and password in Jenkins credential manager
+    b. Configure Remote Git Private Repository
     
+    c. Select configured GIT Credential
+    
+    d. Test by executing below shell command in build section
+    
+            ls -ltr  
+      
     
 JDK and Maven Integration
 

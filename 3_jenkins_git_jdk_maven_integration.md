@@ -34,11 +34,11 @@ JDK and Maven Configurations
                    pipeline 
                    {
                        agent any    
-                       tools 
-		         { 
-    	                   maven 'maven' 
-	                   jdk 'jdk' 
-	                 }
+                       tools
+		       {
+		           maven 'maven' 
+			   jdk 'jdk' 
+		       }
                        stages 
                          {
                             stage('First stage') 

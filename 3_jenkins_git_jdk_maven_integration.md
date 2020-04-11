@@ -22,8 +22,39 @@ GIT Integration
     
             ls -ltr         
     
-JDK and Maven Integration
+JDK and Maven Configurations
 
-1. Goto Manage Jenkins  --> Global Tool Configuration --> Choose JDK --> Create Oracle Account
-2. Execute Jenkins job to install JDK
+1. Goto Manage Jenkins  --> Global Tool Configuration --> JDK --> JDK Installations
+    Note: Need to create Oracle Account
+
+2. Goto Manage Jenkins  --> Global Tool Configuration --> Maven--> Maven Installations
  
+3. Create new Jenkins pipeline job and test the maven configuration by using below pipeline declarative script
+
+
+                   pipeline 
+                   {
+                        agent any    
+
+                       tools 
+		                      { 
+    	                    maven 'maven' 
+	                        jdk 'jdk' 
+	                       }
+
+                         stages 
+                          {
+                            stage('First stage') 
+	                            {
+                               steps 
+		                              {
+                                  println "Hello World"
+						                               sh " mvn -version"
+			                             }
+                             }
+                          }
+                   }
+
+
+
+

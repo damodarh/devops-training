@@ -3,11 +3,14 @@ GIT Integration
 1. Install git client on Jenkins server
  
        sudo apt-get install git
+       
+2. Copy installed git path using  below command
+
        which git
     
-2. Copy git path and add in Jenkins Global Configurations from Managed Jenkins option
+2. Add git path in Global Tool Configuration by going to Managed Jenkins
 
-3. Git test connection
+3. Test git connection
 
     a. Setup Jenkins freestyle job
     

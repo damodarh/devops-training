@@ -31,11 +31,9 @@ JDK and Maven Configurations
  
 3. Create new Jenkins pipeline job and test the maven configuration by using below pipeline declarative script
 
-
                    pipeline 
                    {
-                        agent any    
-
+                       agent any    
                        tools 
 		         { 
     	                   maven 'maven' 
@@ -45,11 +43,11 @@ JDK and Maven Configurations
                          {
                             stage('First stage') 
 	                     {
-                                   steps 
-		                      {
-                                      println "Hello World"
-			              sh " mvn -version"
-			              }
+                                steps 
+		                 {
+                                  println "Hello World"
+			          sh " mvn -version"
+			         }
                              }
                           }
                    }

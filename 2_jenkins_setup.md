@@ -37,23 +37,25 @@ Check your os vendor by using cat /etc/os-release
 
         cat /var/lib/jenkins/secrets/initialAdminPassword
         
-8. Install the suggested Jenkins plugins and configure your admin user        
+8. Install the suggested Jenkins plugins and configure your admin user
+
+9. After creating admin, modify the Jenkins URL like https://PUBLIC-IP  under Instance Configuration. Please make sure you have removed  port number from Jenkins URL
     
-9. Route Jenkins HTTP Port 8080 traffic to standard HTTP port 80
+10. Route Jenkins HTTP Port 8080 traffic to standard HTTP port 80
 
         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
          
          
-10. Optional: Add --httpsPort=8443 in JENKINS_ARGS parameter under below file 
+11. Optional: Add --httpsPort=8443 in JENKINS_ARGS parameter under below file 
          
          vi /etc/default/jenkins
 
-11. Optional: HTTPS Port 8443 to standard HTTPS port 443 using iptables.           
+12. Optional: HTTPS Port 8443 to standard HTTPS port 443 using iptables.           
          
         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
 
       
-12. Set IST Timezone to get appropriate time in Jenkins console 
+13. Set IST Timezone to get appropriate time in Jenkins console 
 
          cat /etc/timezone
          
@@ -64,15 +66,15 @@ Check your os vendor by using cat /etc/os-release
           sudo dpkg-reconfigure tzdata
           
 
-13. Restart jenkins to reflect the changes.
+14. Restart jenkins to reflect the changes.
        
         service jenkins restart
         
         service jenkins status
        
-14. Now, you will be able to access jenkins via http or https using the below link
+15. Now, you will be able to access jenkins via http or https using the below link
        
-        http://${jenkins_public_ip}    OR     https://${jenkins_public_ip}
+        http://${PUBLIC-IP}    OR     https://${PUBLIC-IP}
        
          
 

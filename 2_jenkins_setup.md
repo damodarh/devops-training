@@ -58,6 +58,11 @@ Check your os vendor by using cat /etc/os-release
          cat /etc/timezone
          
          echo "Asia/Kolkata">/etc/timezone
+         
+                      OR
+                     
+          sudo dpkg-reconfigure tzdata
+          
 
 13. Restart jenkins to reflect the changes.
        

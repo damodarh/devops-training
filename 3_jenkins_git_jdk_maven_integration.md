@@ -28,7 +28,7 @@ JDK and Maven Configurations
     Note: Need to create Oracle Account
 
 2. Goto Manage Jenkins  --> Global Tool Configuration --> Maven--> Maven Installations
- 
+
 3. Create new Jenkins pipeline job and test the maven configuration by using below pipeline declarative script
 
                   pipeline 
@@ -51,10 +51,6 @@ JDK and Maven Configurations
                           }
                         }
                    }
-
-
-
-
 
 
 

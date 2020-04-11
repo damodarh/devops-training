@@ -20,8 +20,7 @@ GIT Integration
     
     d. Test by executing below shell command in build section
     
-            ls -ltr  
-      
+            ls -ltr         
     
 JDK and Maven Integration
 

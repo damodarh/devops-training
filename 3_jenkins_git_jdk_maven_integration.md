@@ -37,20 +37,19 @@ JDK and Maven Configurations
                         agent any    
 
                        tools 
-		                      { 
-    	                    maven 'maven' 
-	                        jdk 'jdk' 
-	                       }
-
-                         stages 
-                          {
+		         { 
+    	                   maven 'maven' 
+	                   jdk 'jdk' 
+	                 }
+                       stages 
+                         {
                             stage('First stage') 
-	                            {
-                               steps 
-		                              {
-                                  println "Hello World"
-						                               sh " mvn -version"
-			                             }
+	                     {
+                                   steps 
+		                      {
+                                      println "Hello World"
+			              sh " mvn -version"
+			              }
                              }
                           }
                    }

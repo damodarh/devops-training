@@ -46,15 +46,18 @@ Check your os vendor by using cat /etc/os-release
         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
          
          
-11. Optional: Add --httpsPort=8443 in JENKINS_ARGS parameter under below file 
+11. Add --httpsPort=8443 in JENKINS_ARGS parameter under below file 
          
          vi /etc/default/jenkins
 
-12. Optional: HTTPS Port 8443 to standard HTTPS port 443 using iptables.           
+12. HTTPS Port 8443 to standard HTTPS port 443 using iptables.           
          
         iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
 
-      
+13. iptables-persistent for Debian
+
+        apt-get install iptables-persistent
+
 13. Set IST Timezone to get appropriate time in Jenkins console 
 
          cat /etc/timezone

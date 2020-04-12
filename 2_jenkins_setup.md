@@ -58,7 +58,7 @@ Check your os vendor by using cat /etc/os-release
 
         apt-get install iptables-persistent
 
-13. Set IST Timezone to get appropriate time in Jenkins console 
+14. Set IST Timezone to get appropriate time in Jenkins console 
 
          cat /etc/timezone
          
@@ -69,13 +69,13 @@ Check your os vendor by using cat /etc/os-release
           sudo dpkg-reconfigure tzdata
           
 
-14. Restart jenkins to reflect the changes.
+15. Restart jenkins to reflect the changes.
        
         service jenkins restart
         
         service jenkins status
        
-15. Now, you will be able to access jenkins via http or https using the below link
+16. Now, you will be able to access jenkins via http or https using the below link
        
         http://${PUBLIC-IP}    OR     https://${PUBLIC-IP}
        

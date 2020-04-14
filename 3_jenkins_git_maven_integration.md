@@ -26,7 +26,14 @@ Maven Configurations
 
 1. Goto Manage Jenkins  --> Global Tool Configuration --> Maven--> Maven Installations
 
-3. Create new Jenkins pipeline job and test the maven configuration by using below pipeline declarative script
+
+NodeJs configuration
+
+1. Goto Manage Jenkins  --> Global Tool Configuration --> NodeJS--> NodeJS Installations
+
+
+Create new Jenkins pipeline job and test the maven and node configuration by using below pipeline declarative script
+
 
                   pipeline 
                    {
@@ -34,6 +41,7 @@ Maven Configurations
                        tools
                        {
                          maven 'maven'
+                         nodejs 'node'
                        }
                        stages 
                         {
@@ -42,13 +50,15 @@ Maven Configurations
                            steps 
                             {
                              println "Hello World"
-                             sh " mvn -version"
+                             sh ''' 
+                             mvn -version
+                             node --version
+                             npm --version
+                             '''
                             }
                           }
                         }
                    }
-
-
 
 
 

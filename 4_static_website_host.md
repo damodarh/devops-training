@@ -63,15 +63,15 @@ Important Steps to host Static Website on Google Buckets
 
 1. Execute below Google SDK command to grant access to bucket for all users
 
-        gsutil acl ch -u AllUsers:R gs://bucketname
+        gsutil acl ch -u AllUsers:R gs://test-bucket
 
 2. To make bucket pubically accessible
 
-        gsutil defacl set public-read gs://bucketname
+        gsutil defacl set public-read gs://test-bucket
         
 3. To set or modify the website configuration for an existing bucket 
 
-        gsutil web set -m index.html -e index.html gs://bucketname
+        gsutil web set -m index.html -e index.html gs://test-bucket
         
 
 

@@ -31,7 +31,7 @@ Check your os vendor by using cat /etc/os-release
 
          http://PUBLIC-IP:8080
          
-      Here, PUBLIC-IP is your VM Public IP address
+      Here, PUBLIC-IP is your VM External IP address
 
 7. Get Jenkins admin password from below file and do the login
 

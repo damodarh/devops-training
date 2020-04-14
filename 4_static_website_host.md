@@ -1,6 +1,6 @@
 /*********************************Pipeline script to host web app in Google bucket*************************************************/
 
-                  pipeline 
+                                    pipeline 
                    {
                        agent any    
                        tools
@@ -15,7 +15,11 @@
                           {
                            steps 
                             {
-
+                              script
+                              {   
+                               cleanWs()
+                               checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '${Repo_branch}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_credential', url: 'https://github.com/vmgponly/react-web-app.git']]]
+                             
                              sh '''
                              node --version
                              npm --version
@@ -26,7 +30,7 @@
                              cd build/
                              tar -cvf frontend-${BUILD_NUMBER}.tar *
                              '''
- 
+                           }   
                             }
                           }
                            stage('Deploy') 
@@ -39,18 +43,17 @@
                                 tar -xvf frontend-${BUILD_NUMBER}.tar
                                 rm -rf frontend-${BUILD_NUMBER}.tar
                                 ls -ltr
-                                gsutil acl ch -u AllUsers:R gs://test-bucket
-                                gsutil defacl set public-read gs://test-bucket
-                                gsutil web set -m index.html -e index.html gs://test-bucket
-                                gsutil cp -r * gs://test-bucket/
-                                gsutil setmeta -h "content-type: image/svg+xml" gs://test-bucket/static/media/*.svg
+                                gsutil acl ch -u AllUsers:R gs://test-vijayg
+                                gsutil defacl set public-read gs://test-vijayg
+                                gsutil web set -m index.html -e index.html gs://test-vijayg
+                                gsutil cp -r * gs://test-vijayg/
+                                gsutil setmeta -h "content-type: image/svg+xml" gs://test-vijayg/static/media/*.svg
                                 '''
                              
                             }
                           }
                      }
                   }
-
 
 
 

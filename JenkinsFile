@@ -1,8 +1,13 @@
-pipeline{
+pipeline
+{
   agents any
-  stages{
-    stage("Stage 1){
-      steps {
+  
+  stages
+  {
+    stage("Stage 1)
+    {
+      steps 
+      {
         println "Hello world"
       }
     }
